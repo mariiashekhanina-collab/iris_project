@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='eye-icon.png') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iridio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Иридодиагностика </h1>
+        <p class="sub">Анализ структуры радужки</p>
+
+        <div class="upload-area">
+            <input type="file" id="fileInput" accept="image/*">
+            <label for="fileInput" id="fileLabel">📁 Выбрать фото</label>
+
+            <div class="eye-select">
+                <label>Какой глаз?</label>
+                <select id="eyeSide">
+                    <option value="left">Левый</option>
+                    <option value="right">Правый</option>
+                </select>
+            </div>
+
+            <button id="uploadBtn">🔍 Диагностировать</button>
+        </div>
+
+        <div id="preview-container">
+            <img id="preview" src="#" alt="Предпросмотр" style="display:none;">
+        </div>
+
+        <div id="result" style="display:none;">
+            <h2>Результат анализа</h2>
+            <div id="diagnosis-text" class="highlight"></div>
+            <div id="warning" style="color:#ff6b6b; background:rgba(255,0,0,0.1); padding:10px; border-radius:10px; margin:10px 0; display:none;"></div>
+            
+            <div class="rings">
+                <p>🔵 Желудок (внутр. кольцо): <b id="stomach-lines"></b> линий</p>
+                <p>🟢 Кишечник (сред. кольцо): <b id="intestine-lines"></b> линий</p>
+                <p>⚪ Внешнее кольцо: <b id="outer-lines"></b> линий</p>
+            </div>
+
+            <div class="stats">
+                <span>Линий: <b id="lines"></b></span>
+                <span>Пигментных пятен: <b id="spots"></b></span>
+                <span>Уверенность: <b id="confidence"></b>%</span>
+            </div>
+
+            <h3>Риск по секторам (внешнее кольцо)</h3>
+            <div id="sector-chart" class="sector-grid">
+                <!-- заполняется JS -->
+            </div>
+
+            <p class="note">* Диагноз основан на анализе линий и пятен в секторах радужки. Не является медицинским заключением.</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
